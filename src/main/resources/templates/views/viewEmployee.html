@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"   xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Manager and Tracker</title>
+</head>
+<body th:object="${employee}">
+    <div sec:authorize="isAuthenticated()">
+        Welcome <b><span sec:authentication="name">Username</span></b>
+        <i><span sec:authentication="principal.authorities">Roles</span></i>
+    </div>
+    
+       <p> <a th:href="@{/viewEmployeeAttendance(employeeId=${employee.id})}">View Attendance</a></p>
+        <a th:href="@{/viewProfile(employeeId=${employee.id})}">view profile</a>
+        <!-- Add links to other pages here -->
+        <form th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+    <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom right, #e5f2ff, #d6e7ff);
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #333333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        input.form-control {
+            background: linear-gradient(to bottom, #f5faff, #e0ecff);
+            color: #333333;
+        }
+        
+        button.btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+        
+        button.btn-primary:hover {
+            background-color: #0056b3;
+        }
+        
+        a {
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: #0056b3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body background-image="pjt2.jpeg">
+    <div class="container">
+        <h2>Add Employee</h2>
+        <hr/>
+        <form th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+
+            <div class="m-3">
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Name: </label>
+                    <div class="col-3">
+                        <input type="text" th:field="*{username}" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">E-mail: </label>
+                    <div class="col-3">
+                        <input type="email" th:field="*{email}" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Department: </label>
+                    <div class="col-3">
+                        <input type="text" th:field="*{department}" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Position: </label>
+                    <div class="col-3">
+                        <input type="text" th:field="*{position}" class="form-control" required />
+                    </div>
+                </div>
+                <label class="col-2 col-form-label">Role: </label>
+                <div class="col-3">
+                <select id="role" name="role-select" th:name="|role|" class="form-control">
+                    <option value="employee">employee</option>
+                    <option value="admin">admin</option>
+                </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Save</button>
+            <input type="hidden" th:field="*{id}">
+        </form>
+        <hr/>
+        <a th:href="@{/elist}" class="btn btn-link">Back to list</a>
+    </div>
+</body>
+</html>
